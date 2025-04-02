@@ -2,7 +2,12 @@
 
 <h3>Product - Data Binding</h3>
 Name: @product.Name <br />
-IsActive: @product.IsActive
+IsActive: @product.IsActive <br />
+Price : @product.Price <br />
+Input Price :
+<input type="number" @bind="@product.Price" @bind:event="oninput" />
+
+
 <br />
 
 @code {
