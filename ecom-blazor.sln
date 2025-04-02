@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecom-blazor", "ecom-blazor\ecom-blazor.csproj", "{4888BB9E-08F0-4E7D-AC86-3C6BB1726429}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecomblazor", "ecomblazor\ecomblazor.csproj", "{56D55E50-1877-4EBC-A638-AF0AA9758FB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4888BB9E-08F0-4E7D-AC86-3C6BB1726429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4888BB9E-08F0-4E7D-AC86-3C6BB1726429}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4888BB9E-08F0-4E7D-AC86-3C6BB1726429}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4888BB9E-08F0-4E7D-AC86-3C6BB1726429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56D55E50-1877-4EBC-A638-AF0AA9758FB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D55E50-1877-4EBC-A638-AF0AA9758FB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D55E50-1877-4EBC-A638-AF0AA9758FB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D55E50-1877-4EBC-A638-AF0AA9758FB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
