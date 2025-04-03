@@ -1,0 +1,69 @@
+﻿@page "/demo/ProductDemo"
+
+<h3>ProductDemo</h3>
+
+<br />
+<div class="border p-2 mt-2 bg-secondary">
+    <div class="row">
+        @foreach (var item in ProductList)
+        {
+            @* <div class="bg-light border col-6">
+                <h4 class="text-secondary"> Product - @item.Id</h4>
+
+                Name: @item.Name
+                <p>Show Properties :</p>
+                <input type = "checkbox" @bind="@item.IsActive" @bind:event="oninput" />
+
+                @if(@item.IsActive){
+                    @foreach (var prop in item.Properties){
+                        <p>@prop.Key - @prop.Value</p>
+                    }
+                }
+                <br />
+                <input type="button" class="btn btn-danger" style="width:100px" value="Delete" />
+            </div> *@
+            <_ProductTab item="@item" />
+        } 
+    </div>
+</div>
+<br />
+
+@code {
+
+    List<Product> ProductList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        var product1 = new Product
+            {
+                Id = 2,
+                Name = "Product 2",
+                Price = 200,
+                IsActive = true,
+                Properties = new List<ProductProp>()
+                {
+                    { new ProductProp { id=1, Key = "Navya", Value = "Blue" } },
+                    { new ProductProp { id=2, Key = "Size", Value = "L" }  },
+                    { new ProductProp { id=3, Key = "Weight", Value = "2kg" }  }
+                }
+            };
+
+        var product2 = new Product
+            {
+                Id = 3,
+                Name = "Product 3",
+                Price = 300,
+                IsActive = true,
+                Properties = new List<ProductProp>()
+                {
+                    { new ProductProp { id=1, Key = "Color", Value = "Blue" } },
+                    { new ProductProp { id=2, Key = "Size", Value = "L" }  },
+                    { new ProductProp { id=3, Key = "Weight", Value = "2kg" }  }
+                }
+            };
+
+        ProductList.Add(product1);
+        ProductList.Add(product2);
+    }
+}

@@ -1,0 +1,23 @@
+﻿
+<div class="bg-light border col-6">
+    <h4 class="text-secondary"> Product - @item.Id</h4>
+
+    Name: @item.Name
+    <p>Show Properties :</p>
+    <input type="checkbox" @bind="@item.IsActive" @bind:event="oninput" />
+
+    @if (@item.IsActive)
+    {
+        @foreach (var prop in item.Properties)
+        {
+            <p>@prop.Key - @prop.Value</p>
+        }
+    }
+    <br />
+    <input type="button" class="btn btn-danger" style="width:100px" value="Delete" />
+</div>
+
+@code {
+    [Parameter]
+    public Product item { get; set; } = new();
+}
