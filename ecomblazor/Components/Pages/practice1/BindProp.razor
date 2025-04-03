@@ -1,41 +1,123 @@
 ﻿@page "/practice1/BindProp"
+<div class="row">
+    <div class="col-6 broder p-3">
+        <h3 class="text-primary">Product - Edit</h3>
+        <hr />
+        Input Price         : <input type="number" @bind="@product.Price" @bind:event="oninput" /><br />
+        This product is : @(product.IsActive ? "Active" : "Inactive")<br />
+        <input type="checkbox" @bind="@product.IsActive" @bind:event="oninput" /><br />
+        <br />
+        <br />
+        Properties : <select @bind="selectedProp">
+            @foreach (var prop in product.Properties)
+            {
+                <option value="@prop.Key">@prop.Key</option>
+            })
+        </select>
+    </div>
+    <div class="col-6 broder p-3">
+        <h3 class="text-primary">Product - Summary</h3>
+        <hr />
+        Name                : @product.Name <br />
+        Price               : @product.Price <br />
+        <br />
+        Selected Property   : @selectedProp
+        @if (!string.IsNullOrEmpty(selectedProp))
+        {
+            <p>Selected Value : @product.Properties.FirstOrDefault(u => u.Key == selectedProp).Value</p>
+        }
+    </div>
 
-<h3>Product - Data Binding</h3>
-Name: @product.Name <br />
-Price : @product.Price <br />
-Input Price : <input type="number" @bind="@product.Price" @bind:event="oninput" /><br />
-This product is : @(product.IsActive ? "Active" : "Inactive")<br />
-<input type="checkbox" @bind="@product.IsActive" @bind:event="oninput" /><br />
+</div>
 <br />
 <br />
-Properties : <select @bind="selectedProp" >
-    @foreach (var prop in product.Properties)
+<div class="col-12 border-4">
+    <h2 class="text-success">Product List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>IsActive</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ProductList)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td><input type="text" @bind=item.Name @bind:event="oninput">  </input> </td>
+                    <td><input type="number" @bind=item.Price @bind:event="oninput">  </input> </td>
+                    <td><input type="checkbox" @bind=item.IsActive @bind:event="oninput">  </input> </td>
+                    <td>@item.IsActive</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+<div class="col-6 border-0">
+    <h2 class="text-success">Product Summary</h2>
+    @foreach (var item in ProductList)
     {
-        <option value="@prop.Key">@prop.Key</option>
-    })
-</select>
-
-<br />
-Selected Property : @selectedProp
-@if (!string.IsNullOrEmpty(selectedProp))
-{
-    <p>Selected Value : @product.Properties.FirstOrDefault( u=>u.Key==selectedProp).Value</p>
-}
+        <p>@item.Name [@item.Price] is @(item.IsActive ? "Active" : "InActive")</p>
+    }
+</div>
 <br />
 
 @code {
     private string selectedProp = "";
 
-    Models.Product product = new()
-    {
-        Id = 1,
-        Name = "Product 1",
-        IsActive = true,
-        Properties = new List<Models.ProductProp>()
+    Product product = new()
         {
-            { new Models.ProductProp { id=1, Key = "Color", Value = "Red" } },
-            { new Models.ProductProp { id=2, Key = "Size", Value = "XL" }  },
-            { new Models.ProductProp { id=3, Key = "Weight", Value = "1kg" }  }
+            Id = 1,
+            Name = "Product 1",
+            Price = 100,
+            IsActive = true,
+            Properties = new List<ProductProp>()
+        {
+            { new ProductProp { id=1, Key = "Color", Value = "Red" } },
+            { new ProductProp { id=2, Key = "Size", Value = "XL" }  },
+            { new ProductProp { id=3, Key = "Weight", Value = "1kg" }  }
         }
-    };
+        };
+
+    List<Product> ProductList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        //await Task.Delay(1000);
+        var product1 = new Product
+            {
+                Id = 2,
+                Name = "Product 2",
+                Price = 200,
+                IsActive = true,
+                Properties = new List<ProductProp>()
+                {
+                    { new ProductProp { id=1, Key = "Color", Value = "Blue" } },
+                    { new ProductProp { id=2, Key = "Size", Value = "L" }  },
+                    { new ProductProp { id=3, Key = "Weight", Value = "2kg" }  }
+                }
+            };
+
+        var product2 = new Product
+            {
+                Id = 3,
+                Name = "Product 3",
+                Price = 300,
+                IsActive = true,
+                Properties = new List<ProductProp>()
+                {
+                    { new ProductProp { id=1, Key = "Color", Value = "Blue" } },
+                    { new ProductProp { id=2, Key = "Size", Value = "L" }  },
+                    { new ProductProp { id=3, Key = "Weight", Value = "2kg" }  }
+                }
+            };
+
+        ProductList.Add(product1);
+        ProductList.Add(product2);
+    }
 }
